@@ -8,4 +8,6 @@ jobs:
       - checkout
       - run:
           name: "Testing"
-          command: echo "Hi"
+          command: | 
+            echo "Hi"
+            ls -la
