@@ -10,4 +10,4 @@ jobs:
           name: "Testing"
           command: | 
             echo "Hi"
-            ls -la
+            ls -laek
