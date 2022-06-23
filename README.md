@@ -2,8 +2,6 @@
 ## Introduction
 The main purpose of this repository is to have a simple explanation on how to deploy a **CircleCI** pipeline and how to configure **Github** to add security (block push on main branch without PR, block merge on main branch if CI pipeline broken, etc).
 
----
-
 ## Enable CircleCI on a Github Repository
 
 CircleCI can be added on any kind of repo, free Github subscription is sufficient.
@@ -48,8 +46,6 @@ To be able to connect on the machine used to run the job you are targeting, you 
 > ```
 > Try again to connect on with the ssh command, it should work.
 
----
-
 ## Configure repository to block merging with Github Branch Security feature
 Github Security Branch allow you to add some conditions to meet on a specific repository to be able to merge a PR into another branch.
 In our case, we want to add conditions listed below on the main branch:
@@ -64,4 +60,3 @@ Follow the steps below:
 2. Click `Branches` on the right side-bar and `Add rules`.
 3. In the **Branch name pattern** field, put the name of the branch you want those rules to be applied on (in most of the case, `main`).
 4. Select all the rules listed above and click on `Create` at the bottom.
-
