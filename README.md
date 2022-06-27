@@ -60,3 +60,13 @@ Follow the steps below:
 2. Click `Branches` on the right side-bar and `Add rules`.
 3. In the **Branch name pattern** field, put the name of the branch you want those rules to be applied on (in most of the case, `main`).
 4. Select all the rules listed above and click on `Create` at the bottom.
+
+> ### **Warning**:
+> By default, job name is **build** but this name is editable in `.circleci/config.yml`.
+> If you chose to replace this job name, you will need to update the github branch check feature configuration too.
+> Below, steps to follow:
+> 1. Go in your repo and click `Settings` on the right side.
+> 2. Click `Branches` on the right side-bar and `Add rules`.
+> 3. Click on `Edit`
+> 4. Under `Require status checks to pass before merging`, search something like **ci/circleci: <my_job_name>**.
+> 5. Click on `Save changes`.
