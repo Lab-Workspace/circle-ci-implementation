@@ -15,8 +15,21 @@ jobs:
           name: Initialize cluster
           command: |
             bash -x scripts/init_k8s_cluster.sh
+            NODE=$HOSTNAME bash -x scripts/wait_for_node.sh            
 
       - run:
-          name: Wait for cluster
+          name: Build go-server image
           command: |
-            NODE=$HOSTNAME bash -x scripts/wait_for_node.sh
+            make
+            sudo docker build . -t go-server-img
+
+      - run:
+          name: Deploy go-server in cluster
+          command: |
+            kubectl apply -f deployment.yaml
+            POD=go-server bash -x scripts/wait_for_pod.sh
+
+      - run:
+          name: Integration test(s)
+          command: |
+            curl $HOSTNAME:30007

@@ -63,8 +63,12 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-# Being able to deploy PODs on master node
+# Kubectl autocompletion
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+
+# Being able to deploy PODs on master node (won't be master node anymore)
 kubectl taint node $MACHINE_ID node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint node $MACHINE_ID node-role.kubernetes.io/master-
 
 # Cluster deployment network
 kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
