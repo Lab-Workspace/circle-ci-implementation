@@ -30,6 +30,10 @@ sudo apt update
 sudo apt install -y containerd.io docker-ce docker-ce-cli
 sudo mkdir -p /etc/systemd/system/docker.service.d
 
+# Disable swap
+sudo swapoff -a
+sudo sed -i '/swap/d' /etc/fstab
+
 # Create daemon json config file
 sudo tee /etc/docker/daemon.json <<EOF
 {
@@ -75,3 +79,4 @@ kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator
 curl https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml -O
 sed -i "s,192.168.0.0/16,$POD_NETWORK,g" custom-resources.yaml
 kubectl create -f custom-resources.yaml
+
